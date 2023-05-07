@@ -1,0 +1,39 @@
+:root{
+    --background-color: #1A2A33;
+}
+/* my library> */
+.display-flex{
+    display: flex;
+}
+.flex-dierction-column{
+    flex-direction: column;
+}
+.justify-content-space-between{
+    justify-content: space-between;
+}
+.justify-content-center{
+    justify-content: center;
+}
+.align-items-center{
+    align-items: center;
+}
+/* <my library */
+main{
+    height: 100vh;
+    background-color: var(--background-color);
+}
+.option-section{
+    row-gap: 3em;
+}
+.pick-mark-section{
+    padding: 1.5em;
+    row-gap: 1.5em;
+    border-radius: 15px;
+    background-color: #1F3641;
+}
+.pick-mark-part{
+    column-gap: 3em;
+}
+.pick-mark-part button{
+    padding: 10px 80px;
+}

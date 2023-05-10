@@ -6,23 +6,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="static/css/reset.css">
     <link rel="stylesheet" type="text/css" href="static/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700&display=swap" rel="stylesheet">
     <title>tic-tac-toe</title>
 </head>
 <body>
     <main class="display-flex display-flex flex-dierction-column justify-content-center align-items-center">
         <section class="option-section display-flex flex-dierction-column justify-content-center align-items-center">
-            <div>
-                <h1>X O</h1>
-            </div>
-            <div class="pick-mark-section display-flex flex-dierction-column align-items-center">
-                <h2>PICK PLAYER 1’S MARK</h2>
-                <div class="pick-mark-part display-flex justify-content-center">
-                    <button type="button" class="common-button x-button">X</button>
-                    <button type="button" class="common-button o-button">O</button>
+            <div class="x-and-0-title display-flex">
+                <div class="small-x">
+                    <div class="x-line"></div>
+                    <div class="x-line"></div>
                 </div>
-                <h3>REMEMBER : X GOES FIRST</h3>
+                <div class="small-o">
+                    <div class="o-inner-circle"></div>
+                </div>
+            </div>
+            <div class="pick-mark-section display-flex flex-dierction-column align-items-center black-box-shadow gray-font">
+                <h2 class="standard-font-size">PICK PLAYER 1’S MARK</h2>
+                <div class="pick-mark-part display-flex justify-content-center">
+                    <button type="button" class="x-button option-button option-button-active">
+                        <div class="small-x">
+                            <div class="x-line"></div>
+                            <div class="x-line"></div>
+                        </div>
+                    </button>
+                    <button type="button" class="o-button option-button">
+                        <div class="small-o">
+                            <div class="o-inner-circle"></div>
+                        </div>
+                    </button>
+                </div>
+                <h3 class="remainder smaller-font-size">REMEMBER : X GOES FIRST</h3> 
+            </div>
+            <div class="game-modes-wrapper display-flex flex-dierction-column align-items-center">
+                <button type="button" class="common-larger-button yellow-larger-button">NEW GAME (VS CPU)</button>
+                <button type="button" class="common-larger-button blue-larger-button">NEW GAME  (VS PLAYER)</button>
             </div>
         </section>
     </main>
+    <script src="static/js/app.js"></script>
 </body>
 </html>

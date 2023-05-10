@@ -1,5 +1,10 @@
 :root{
     --background-color: #1A2A33;
+    --gray:#A8BFC9;
+    --blue:#31C3BD;
+    --yellow: #F2B137;
+    --yellow-hover: #FFC860;
+    --blue-hover:#65E9E4;
 }
 /* my library> */
 .display-flex{
@@ -18,12 +23,105 @@
     align-items: center;
 }
 /* <my library */
+/* common tags> */
+.standard-font-size{
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 1px;
+}
+.smaller-font-size{
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 18px;
+}
+        /* small x> */
+.small-o, .small-x{
+    position: relative;
+    width: 32px;
+    height: 32px;
+    transition: all 0.2s linear;
+}
+.small-x .x-line{
+    position: absolute;
+    bottom: -5%;
+    right: 40%;
+    height: 36px;
+    width: 10px;
+    background-color: var(--blue);
+    border-radius: 3px;
+    transition: all 0.2s linear;
+}
+.small-x .x-line:nth-child(1){
+    transform: rotate(45deg);
+}
+.small-x .x-line:nth-child(2){
+    transform: rotate(-45deg);
+}
+        /* <small x */
+        /* small y> */
+.small-o{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F2B137;
+    border-radius: 50%;
+    transition: all 0.2s linear;
+}
+.small-o .o-inner-circle{
+    width: 45%;
+    height: 45%;
+    border-radius: 50%;
+    background-color: var(--background-color);
+    transition: all 0.2s linear;
+}
+        /* <small y */
+        /* common larger button> */
+.common-larger-button{
+    min-width: 460px;
+    padding: 1em 0;
+    border-radius: 15px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 25px;
+    letter-spacing: 1.25px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+.yellow-larger-button{
+    background-color: var(--yellow);
+    box-shadow: inset 0px -8px 0px #CC8B13;
+}
+.yellow-larger-button:hover{
+    background-color: var(--yellow-hover);
+}
+.blue-larger-button{
+    background-color: var(--blue);
+    box-shadow: inset 0px -8px 0px #118C87;
+}
+.blue-larger-button:hover{
+    background-color: var(--blue-hover);
+}
+        /* <common larger button */
+.black-box-shadow{
+    box-shadow: inset 0px -8px 0px #10212A;
+}
+.gray-font{
+    color: var(--gray);
+}
+/* <common tags */
 main{
     height: 100vh;
     background-color: var(--background-color);
 }
 .option-section{
-    row-gap: 3em;
+    row-gap: 2em;
+}
+.x-and-0-title{
+    column-gap: 0.5em;
 }
 .pick-mark-section{
     padding: 1.5em;
@@ -32,8 +130,46 @@ main{
     background-color: #1F3641;
 }
 .pick-mark-part{
-    column-gap: 3em;
+    column-gap: 1em;
+    padding: 0.6em;
+    border-radius: 10px;
+    background-color: var(--background-color);
 }
 .pick-mark-part button{
-    padding: 10px 80px;
+    padding: 15px 80px;
+    border-radius: 10px;
+    background-color: inherit;
+    color: var(--gray);
+    cursor: pointer;
+}
+/* option x-button style> */
+.option-button.option-button-active{
+    background-color: var(--gray);
+}
+.x-button .small-x .x-line{
+    background-color: var(--gray);
+}
+.x-button.option-button-active .small-x .x-line{
+    background-color: var(--background-color);
+    transition: all 0.2s linear;
+}
+/* <option x-button style */
+/* option y-button style> */
+.o-button .small-o{
+    background-color: var(--gray);
+}
+.o-button.option-button-active .small-o{
+    background-color: var(--background-color);
+    transition: all 0.2s linear;
+}
+.o-button.option-button-active .small-o .o-inner-circle{
+    background-color: var(--gray);
+    transition: all 0.2s linear;
+}
+/* <option y-button style */
+.remainder{
+    opacity: 0.5;
+}
+.game-modes-wrapper{
+    row-gap: 1em;
 }

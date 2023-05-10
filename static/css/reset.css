@@ -52,3 +52,8 @@ a{
 html{
 	scroll-behavior: smooth;
 }
+button, input{
+	border:none;
+	outline: none;
+	transition: all 0.2s linear;
+}

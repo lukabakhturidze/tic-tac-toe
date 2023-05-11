@@ -1,0 +1,35 @@
+@media(max-width: 568px){
+    /* for introduction section> */
+    .option-section{
+        row-gap: 1.5em;
+    }
+    .pick-mark-section{
+        padding: 1em;
+    }
+    .game-modes-wrapper{
+        row-gap: 0.7em;
+    }
+    .pick-mark-part button{
+        padding: 11px 50px;
+    }
+    .common-larger-button{
+        font-size: 16px;
+        line-height: 20px;
+    }
+    /* <for introduction section */
+
+}
+@media(max-width: 345px){
+    /* for introduction section> */
+    .pick-mark-section{
+        padding: 0.7em;
+    }
+    .pick-mark-part{
+        flex-direction: column;
+        row-gap: 0.7em;
+    }
+    .pick-mark-part button{
+        padding: 12px 85px;
+    }
+    /* <for introduction section */
+}

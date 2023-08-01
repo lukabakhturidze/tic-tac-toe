@@ -1,5 +1,9 @@
 @font-face{
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Outfit-medium', sans-serif;
     src: url("../fonts/Outfit-Medium.ttf")
+}
+@font-face{
+    font-family: 'Outfit-bold', sans-serif;
+    src: url("../fonts/Outfit-Bold.ttf");
 }
 

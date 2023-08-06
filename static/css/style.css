@@ -42,8 +42,44 @@
 .display-block{
     display: block;
 }
+.overflow-hidden{
+    overflow: hidden;
+}
 /* <my library */
 /* common tags> */
+.blue-background{
+    background-color: var(--blue);
+}
+.yellow-background{
+    background-color: var(--yellow);
+}
+.gray-background{
+    background-color: var(--gray);
+}
+.black-text{
+    color: var(--background-color);
+}
+.blue-text{
+    color: var(--blue);
+}
+.yellow-text{
+    color: var(--yellow);
+}
+.gray-text{
+    color: var(--gray);
+}
+.extra-larger-font-size{
+    font-family: 'Outfit-bold', sans-serif;
+    font-size: 40px;
+    letter-spacing: 2.5px;
+    font-weight: 700;
+}
+.larger-font-size{
+    font-family: 'Outfit-bold', sans-serif;
+    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
 .standard-font-size{
     font-family: 'Outfit-bold', sans-serif;
     font-weight: 700;
@@ -107,6 +143,7 @@
 }
 .large-x{
     position: relative;
+    transition: all linear 0.2s;
 }
 .large-x .x-line{
     position: absolute;
@@ -127,11 +164,32 @@
     transform: rotate(-45deg);
 }
 
-.ready-for-x > .large-x{
+.ready-for-x > .large-x, .x-chosen .large-x,.x-chosen.win .large-x{
     display: block;
 }
 .ready-for-x:hover .large-x .x-line{
     border: 2px solid var(--blue);
+}
+
+.x-chosen .large-x .x-line{
+    background-color: var(--blue);
+    border-color: var(--blue);
+}
+
+.x-chosen.win{
+    background-color: var(--blue);
+}
+.x-chosen.win .large-x .x-line{
+    background-color: var(--light-background-color);
+    border-color: var(--light-background-color);
+}
+
+.x-o-modal-wrapper.x-modal-win .large-x{
+    display: block;
+}
+.x-o-modal-wrapper.x-modal-win .large-x .x-line{
+    background-color: var(--blue);
+    border-color: var(--blue);
 }
         /* <large x */
         /* large o> */
@@ -155,6 +213,24 @@
     border: 2px solid var(--yellow);
 }
 
+.o-chosen .large-o{
+    display: flex;
+    background-color: var(--yellow);
+    border-color: var(--yellow);
+}
+
+.o-chosen.win, .o-chosen.win .large-o .o-inner-circle{
+    background-color: var(--yellow);
+}
+.o-chosen.win .large-o{
+    background-color: var(--light-background-color);
+    border-color: var(--yellow);
+}
+
+.x-o-modal-wrapper.o-modal-win .large-o{
+    display: flex;
+    background-color: var(--yellow);
+}
         /* <large o */
 
         /* common larger button> */
@@ -169,13 +245,13 @@
     letter-spacing: 1.25px;
     text-transform: uppercase;
     cursor: pointer;
-    color: var(--background-color);
+    color: var(--background-color); 
 }
 .yellow-larger-button{
     background-color: var(--yellow);
     box-shadow: inset 0px -8px 0px #CC8B13;
 }
-.yellow-larger-button:hover{
+.yellow-larger-button:hover, .yellow-smaller-button:hover{
     background-color: var(--yellow-hover);
 }
 .blue-larger-button{
@@ -186,6 +262,30 @@
     background-color: var(--blue-hover);
 }
         /* <common larger button */
+        /* common smaller button> */
+        .common-smaller-button{
+            padding: 15px 17px;
+            border-radius: 10px;
+            font-family: 'Outfit-bold', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--background-color);
+            cursor: pointer;
+        }
+        .yellow-smaller-button{
+            background-color: var(--yellow);
+            box-shadow: 0 -4px 0 0 #CC8B13 inset;
+        }
+        .gray-smaller-button{
+            background-color: var(--gray);
+            box-shadow: 0px -4px 0px 0px #6B8997 inset;
+        }
+        .gray-smaller-button:hover{
+            background-color: var(--dark-white);
+        }
+        /* <common smaller button */
 .black-box-shadow{
     box-shadow: inset 0px -8px 0px #10212A;
 }
@@ -308,5 +408,31 @@ main{
     background-color: var(--light-background-color);
     border-radius: 12px;
     cursor: pointer;
+    transition: all 1s ease-out;
+}
+.score-wrapper{
+    padding: 13px 0;
+    border-radius: 15px;
 }
 /* <play-board style */
+/* modal style> */
+.modal-section{
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+}
+.modal-content-wrapper{
+    width: 100%;
+    padding: 3em 0; 
+    row-gap: 2em;
+    background-color: var(--light-background-color);
+    text-transform: uppercase;
+}
+.modal-result-wrapper{
+    column-gap: 1em;
+}
+.modal-option-wrapper{
+    column-gap: 1em;
+}
+/* <modal style */

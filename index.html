@@ -154,6 +154,43 @@
                 </div>
             </div>
             <!--<blocks-->
+            <div class="score-wrapper display-flex flex-direction-column justify-content-center align-items-center blue-background">
+                <h4 class="smaller-font-size black-text">P1(X)</h4>
+                <h4 class="larger-font-size black-text p1-score">0</h4> 
+            </div>
+            <div class="score-wrapper display-flex flex-direction-column justify-content-center align-items-center gray-background">
+                <h4 class="smaller-font-size black-text">TIED</h4>
+                <h4 class="larger-font-size black-text tie-score">0</h4> 
+            </div>
+            <div class="score-wrapper display-flex flex-direction-column justify-content-center align-items-center yellow-background">
+                <h4 class="smaller-font-size black-text">P2(O)</h4>
+                <h4 class="larger-font-size black-text p2-score">0</h4> 
+            </div>
+        </section>
+        <section class="modal-section display-none justify-content-center align-items-center">
+            <div class="modal-content-wrapper display-flex flex-direction-column align-items-center">
+                <h4 class="modal-win-declaration standard-font-size gray-text">PLAYER 1 WINS!</h4>
+                <div class="modal-result-wrapper display-flex align-items-center">
+                    <div class="x-o-modal-wrapper">
+                        <div class="large-x">
+                            <div class="x-line"></div>
+                            <div class="x-line"></div>
+                        </div>
+                        <div class="large-o display-flex justify-content-center align-items-center">
+                            <div class="o-inner-circle"></div>
+                        </div>
+                    </div>
+                    <h4 class="modal-result extra-larger-font-size">TAKES THE ROUND</h4>
+                </div>
+                <div class="modal-option-wrapper display-flex align-items-center">
+                    <button class="common-smaller-button gray-smaller-button">
+                        QUIT                    
+                    </button>
+                    <button class="common-smaller-button yellow-smaller-button">
+                        NEXT ROUND
+                    </button>
+                </div>
+            </div>
         </section>
     </main>
     <script src="static/js/app.js"></script>

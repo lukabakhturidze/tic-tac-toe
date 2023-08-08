@@ -67,7 +67,7 @@
                 <h3 class="standard-font-size gray-font">TURN</h3>
             </div>
             <div class="reload-button-wrapper display-flex justify-content-flex-end align-items-center">
-                <button type="button" class="gray-box-shadow">
+                <button type="button" class="reload-button gray-box-shadow">
                     <img src="static/images/play-board-images/reload-image.png" alt="reload-image">
                 </button>
             </div> 
@@ -182,13 +182,23 @@
                     </div>
                     <h4 class="modal-result extra-larger-font-size">TAKES THE ROUND</h4>
                 </div>
-                <div class="modal-option-wrapper display-flex align-items-center">
-                    <button class="common-smaller-button gray-smaller-button">
-                        QUIT                    
-                    </button>
-                    <button class="common-smaller-button yellow-smaller-button">
-                        NEXT ROUND
-                    </button>
+                <div class="modal-options-wrapper display-flex flex-direction-column align-items-center">
+                    <div class="options-after-play-end display-flex">
+                        <button class="quit-button common-smaller-button gray-smaller-button">
+                            QUIT                    
+                        </button>
+                        <button class="next-round-button common-smaller-button yellow-smaller-button">
+                            NEXT ROUND
+                        </button>
+                    </div>
+                    <div class="options-for-reload display-flex">
+                        <button class="reload-reject-button common-smaller-button gray-smaller-button">
+                            NO, CANCLE
+                        </button>
+                        <button class="reload-accept-button common-smaller-button yellow-smaller-button">
+                            YES, RESTART
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>

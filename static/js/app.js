@@ -19,6 +19,9 @@ const modalSection = document.querySelector(".modal-section");
 const modalWinDeclaration = document.querySelector(".modal-win-declaration");
 const modalXO = document.querySelector(".x-o-modal-wrapper");
 const modalResult = document.querySelector(".modal-result");
+let TieOrWin= false;
+const playEndOptionsWrapper = document.querySelector(".options-after-play-end");
+const reloadOptionsWrapper = document.querySelector(".options-for-reload");
 // <turn indicator variables2&4
 
 // go to play board variables>3
@@ -26,6 +29,15 @@ const gameOptionButtons = document.querySelectorAll(".game-option-button");
 const initialSection = document.getElementById("initial-section");
 const PlaySection = document.getElementById("vs-player-section");
 // <go to play board variables3
+// reload variables>5
+const reloadButton = document.querySelector(".reload-button");
+const reloadAcceptButton = document.querySelector(".reload-accept-button");
+const reloadRejectButton = document.querySelector(".reload-reject-button");
+// <reload variables5
+// play end modal variables>6
+const quitButton = document.querySelector(".quit-button");
+const nextRoundButton = document.querySelector(".next-round-button");
+// play end modal variables>6
 //option buttons action>1
 optionButtons.forEach(buttonActiveHandler);
 function buttonActiveHandler(optionButton, index, arr)
@@ -68,11 +80,17 @@ function turnIndicatorHandler()
 }
 turnIndicatorHandler();
 //<turn indicator handler2
+function moveOnPages()
+{
+    initialSection.classList.toggle("display-flex");
+    initialSection.classList.toggle("display-none");
+    PlaySection.classList.toggle("display-none");
+    PlaySection.classList.toggle("display-grid");
+}
 // go to play board handler>3
 gameOptionButtons.forEach((optionButton)=>{
     optionButton.addEventListener('click', () =>{
-        initialSection.classList.replace("display-flex", "display-none");
-        PlaySection.classList.replace("display-none", "display-grid");
+        moveOnPages();
     });
 });
 // <go to play board handler3
@@ -82,16 +100,17 @@ gameOptionButtons.forEach((optionButton)=>{
     //open/close modal>
 function openCloseModal()
 {
-    modalSection.classList.replace("display-none", "display-flex");
-    playBoard.classList.replace("display-grid", "display-none");
+    modalSection.classList.toggle("display-none");
+    modalSection.classList.toggle("display-flex");
+    playBoard.classList.toggle("overflow-hidden");
 }
     //<open/close modal
 
     //win results execution>
-function winExecution(classForCheck, winBlocks)
+function winExecution(classForCheck, TieOrWin,winBlocks)
 {
-        alreadyWon = true;
-        if(classForCheck == "x-chosen")
+    alreadyWon = true;
+    if(classForCheck == "x-chosen" && TieOrWin == true)
     {
         p1Score++;
         p1.innerHTML = p1Score;
@@ -100,13 +119,20 @@ function winExecution(classForCheck, winBlocks)
         {
             winBlocks[i].classList.add("win");
         }
+        modalWinDeclaration.classList.add("display-block");
+        modalWinDeclaration.classList.remove("display-none");
         modalWinDeclaration.innerHTML = "player 1 wins";
         modalXO.classList.add("x-modal-win");
         modalXO.classList.remove("o-modal-win");
+        modalResult.innerHTML = "TAKES THE ROUND";
         modalResult.classList.add("blue-text");
         modalResult.classList.remove("yellow-text");
+        modalResult.classList.remove("gray-text");
+        reloadOptionsWrapper.classList.replace("display-flex", "display-none");
+        playEndOptionsWrapper.classList.remove("display-none");
+        playEndOptionsWrapper.classList.add("display-flex");
     }
-    else if(classForCheck == "o-chosen")
+    else if(classForCheck == "o-chosen" && TieOrWin == true)
     {
         p2Score++;
         p2.innerHTML = p2Score;
@@ -115,11 +141,32 @@ function winExecution(classForCheck, winBlocks)
         {
             winBlocks[i].classList.add("win");
         }
+        modalWinDeclaration.classList.add("display-block");
+        modalWinDeclaration.classList.remove("display-none");
         modalWinDeclaration.innerHTML = "player 2 wins";
         modalXO.classList.add("o-modal-win");
         modalXO.classList.remove("x-modal-win");
+        modalResult.innerHTML = "TAKES THE ROUND";
         modalResult.classList.add("yellow-text");
         modalResult.classList.remove("blue-text");
+        modalResult.classList.remove("gray-text");
+        reloadOptionsWrapper.classList.replace("display-flex", "display-none");
+        playEndOptionsWrapper.classList.remove("display-none");
+        playEndOptionsWrapper.classList.add("display-flex");
+    }
+    else if(TieOrWin == false)
+    {
+        modalWinDeclaration.classList.add("display-none");
+        modalWinDeclaration.classList.remove("display-block");
+        modalXO.classList.remove("o-modal-win");
+        modalXO.classList.remove("x-modal-win");
+        modalResult.innerHTML = "ROUND TIED";
+        modalResult.classList.add("gray-text");
+        modalResult.classList.remove("yellow-text");
+        modalResult.classList.remove("blue-text");
+        reloadOptionsWrapper.classList.replace("display-flex", "display-none");
+        playEndOptionsWrapper.classList.remove("display-none");
+        playEndOptionsWrapper.classList.add("display-flex");
     }
     setTimeout(openCloseModal, 1000);
         
@@ -134,23 +181,27 @@ function winChecker(array, classForCheck)
     {
         if(array[i].classList.contains(classForCheck) && array[i + 3].classList.contains(classForCheck) && array[i + 6].classList.contains(classForCheck))
         {
-            winExecution(classForCheck, [array[i], array[i + 3], array[i + 6]]);
+            TieOrWin = true;
+            winExecution(classForCheck, TieOrWin,[array[i], array[i + 3], array[i + 6]]);
             return;
         }
         else if(array[3 * i].classList.contains(classForCheck) && array[(3 * i) + 1].classList.contains(classForCheck) && array[(3 * i) + 2].classList.contains(classForCheck))
         {
-            winExecution(classForCheck, [array[3 * i], array[(3 * i) + 1], array[(3 * i) + 2]]);
+            TieOrWin = true;
+            winExecution(classForCheck, TieOrWin, [array[3 * i], array[(3 * i) + 1], array[(3 * i) + 2]]);
             return;
         }
     }
     if(array[0].classList.contains(classForCheck) && array[4].classList.contains(classForCheck) && array[8].classList.contains(classForCheck))
     {
-        winExecution(classForCheck, [array[0], array[4], array[8]]);
+        TieOrWin = true;
+        winExecution(classForCheck, TieOrWin,[array[0], array[4], array[8]]);
         return;
     }
     else if(array[2].classList.contains(classForCheck) && array[4].classList.contains(classForCheck) && array[6].classList.contains(classForCheck))
     {
-        winExecution(classForCheck, [array[2], array[4], array[6]]);
+        TieOrWin = true;
+        winExecution(classForCheck, TieOrWin, [array[2], array[4], array[6]]);
         return;
     }
     else if(tieChecker >= 9)
@@ -159,6 +210,7 @@ function winChecker(array, classForCheck)
         tieScore++;
         tie.innerHTML = tieScore;
         console.log(tieScore);
+        winExecution(classForCheck, TieOrWin, []);
         return;
     }
 }
@@ -182,6 +234,92 @@ blocksArray.forEach((block, index, blockArray) =>{
         }
     });
 });
-
-
 // <blocks click event handler4
+function resetBoard()
+{
+    blocksArray.forEach((block)=>{
+        tieChecker = 0;
+        if(whichTurn == false)
+        {
+            if(block.classList.contains("ready-for-o"))
+            {
+                return;
+            }
+            else
+            {
+                block.classList.add("ready-for-o");
+                block.classList.remove("ready-for-x");
+            }
+        }
+        else
+        {
+            if(block.classList.contains("ready-for-x"))
+            {
+                return;
+            }
+            else
+            {
+                block.classList.add("ready-for-x");
+                block.classList.remove("ready-for-o");
+            }
+        }
+        block.classList.remove("o-chosen");
+        block.classList.remove("x-chosen");
+        block.classList.remove("win");
+    });
+}
+function commonReset()
+{
+    openCloseModal();
+    resetBoard();
+    alreadyWon = false;
+    TieOrWin = false;
+}
+// reload handler>5
+reloadButton.addEventListener('click', () =>{
+    if(alreadyWon == false)
+    {
+        modalXO.classList.remove("o-modal-win");
+        modalXO.classList.remove("x-modal-win");
+        modalResult.innerHTML = "RESTART GAME?";
+        modalResult.classList.add("gray-text");
+        modalWinDeclaration.classList.add("display-none");
+        modalWinDeclaration.classList.remove("display-block");
+        playEndOptionsWrapper.classList.replace("display-flex", "display-none");
+        reloadOptionsWrapper.classList.remove("display-none");
+        reloadOptionsWrapper.classList.add("display-flex");
+        openCloseModal();
+    }
+    else
+    {
+        return;
+    }
+});
+reloadRejectButton.addEventListener('click', () =>{
+    openCloseModal();
+});
+reloadAcceptButton.addEventListener('click', ()=>{
+    openCloseModal();
+    resetBoard();
+});
+// reload handler>5
+// play end modal handler>6
+nextRoundButton.addEventListener('click', ()=>{
+    commonReset();
+});
+quitButton.addEventListener('click', ()=>{
+    whichTurn = true;
+    turnIndicatorHandler();
+    commonReset();
+    console.log(whichTurn);
+    p1Score = 0;
+    p2Score = 0;
+    tieScore = 0;
+    p1.innerHTML = p1Score;
+    p2.innerHTML = p2Score;
+    tie.innerHTML = tieScore;
+    moveOnPages();
+});
+// <play end modal handler6
+
+

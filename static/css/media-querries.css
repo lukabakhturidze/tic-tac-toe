@@ -1,28 +1,151 @@
 @media(max-width: 568px){
+    /* for common tags> */
+    .extra-larger-font-size{
+        font-size: 35px;
+        letter-spacing: 2px;
+    }
+    .common-larger-button{
+        font-size: 18px;
+        line-height: 20px;
+    }
+    /* <for common tags */
     /* for introduction section> */
     .option-section{
         row-gap: 1.5em;
     }
     .pick-mark-section{
-        padding: 1em;
+        padding: 2em;
     }
     .game-modes-wrapper{
         row-gap: 0.7em;
     }
     .pick-mark-part button{
+        padding: 11px 60px;
+    }
+    /* <for introduction section */
+    /* for play board section> */
+    .turn-indicator{
+        padding: 10px 28px;
+        column-gap: 0.7em;
+    }
+    .turn-indicator .x-and-0-title .small-x, .turn-indicator .x-and-0-title .small-o{
+        width: 16px;
+        height: 16px;
+    }
+    .turn-indicator .x-and-0-title .small-x .x-line{
+        height: 18px;
+        width: 5px;
+        bottom: -5%;
+        right: 33%;
+    }
+    .turn-indicator .x-and-0-title .small-o .o-inner-circle{
+        width: 50%;
+        height: 50%;
+    }
+    .reload-button-wrapper button img{
+        width: 45px;
+        height: 44px;
+    }
+    .x-o-block{
+        height: 131px;
+        border-radius: 12px;
+        cursor: pointer;
+    }
+    .score-wrapper{
+        padding: 9px 0;
+    }
+    /* <for play board section */
+}
+@media(max-width: 470px){
+    /* for common tags> */
+    .extra-larger-font-size{
+        font-size: 28px;
+        letter-spacing: 1.5px;
+    }
+    .yellow-larger-button{
+        box-shadow: inset 0px -5px 0px #CC8B13;
+    }
+    .blue-larger-button{
+        box-shadow: inset 0px -5px 0px #118C87;
+    }
+    /* <for common tags */
+    /* for introduction section> */
+    .pick-mark-section{
+        padding: 1em;
+    }
+    .pick-mark-part button{
         padding: 11px 50px;
+    }
+    /* <for introduction section */
+    /* for play board> */
+    .turn-indicator{
+        padding: 10px 14px;
+        column-gap: 0.7em;
+    }
+    .x-o-block{
+        height: 104px;
+        border-radius: 12px;
+        cursor: pointer;
+    }
+    .play-board .x-o-block:nth-child(4), .play-board .x-o-block:nth-child(5), .play-board .x-o-block:nth-child(6){
+        margin-top: 30px;
+    }
+    .play-board .x-o-block:nth-child(10), .play-board .x-o-block:nth-child(11), .play-board .x-o-block:nth-child(12){
+        margin-bottom: 10px;
+    }
+    .large-x, .large-o{
+        width: 50px;
+        height: 50px;
+    }
+    .large-x .x-line{
+        height: 55px;
+        width: 14px;
+        bottom: -5%;
+    }
+    .large-o .o-inner-circle{
+        width: 20px;
+        height: 20px;
+    }
+    /* <for play board */
+}
+@media(max-width: 376px){
+    /* for common tags> */
+    .extra-larger-font-size{
+        font-size: 24px;
+        letter-spacing: 1px;
+    }
+    .larger-font-size{
+        font-family: 'Outfit-bold', sans-serif;
+        font-size: 22px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .standard-font-size{
+        font-family: 'Outfit-bold', sans-serif;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 18px;
+        letter-spacing: 1px;
+    }
+    .smaller-font-size{
+        font-family: 'Outfit-medium', sans-serif; 
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 16px;
     }
     .common-larger-button{
         font-size: 16px;
-        line-height: 20px;
+        font-weight: 600;
+        letter-spacing: 1px;
     }
-    /* <for introduction section */
-
-}
-@media(max-width: 345px){
+    /* <for common tags */
     /* for introduction section> */
+    .option-section{
+        width: 90%;
+    }
     .pick-mark-section{
-        padding: 0.7em;
+        padding: 1em 0;
+        width: 100%;
     }
     .pick-mark-part{
         flex-direction: column;
@@ -32,4 +155,60 @@
         padding: 12px 85px;
     }
     /* <for introduction section */
+    /* for play board> */
+    .play-board{
+        margin-top: 30px;
+        align-self: flex-start;
+    }
+    .play-board .x-o-block:nth-child(4), .play-board .x-o-block:nth-child(5), .play-board .x-o-block:nth-child(6){
+        margin-top: 60px;
+    }
+    /* <for play board */
+    /* for modal section> */
+    .x-o-modal-wrapper .large-x, .x-o-modal-wrapper .large-o{
+        width: 28px;
+        height: 28px;
+    }
+    .x-o-modal-wrapper .large-x .x-line{
+        height: 30px;
+        width: 8px;
+        bottom: -4%;
+    }
+    .x-o-modal-wrapper .large-o .o-inner-circle{
+        width: 12px;
+        height: 12px;
+    }
+    /* <for modal section */
+}
+@media(max-width: 350px){
+    /* for common tags> */
+    .extra-larger-font-size{
+        font-size: 20px;
+        letter-spacing: 0.5px;
+    }
+    /* <for common tags */
+    /* for play board> */
+    .play-board{
+        margin: 0;
+        grid-gap: 8px;
+        align-self: center;
+    }
+    .turn-indicator{
+        padding: 3px 8px;
+        column-gap: 0.5em;
+    }
+    .reload-button-wrapper button img{
+        width: 40px;
+        height: 39px;
+    }
+    .x-o-block{
+        height: 83px;
+    }
+    .play-board .x-o-block:nth-child(4), .play-board .x-o-block:nth-child(5), .play-board .x-o-block:nth-child(6){
+        margin-top: 30px;
+    }
+    .score-wrapper{
+        padding: 5px 0;
+    }
+    /* <for play board */
 }

@@ -1,5 +1,6 @@
 // option buttons variables>1
 const optionButtons = document.querySelectorAll(".option-button");
+let choosenSign = true;
 // <option buttons variables1
 // turn indicator variables>2&4
 let whichTurn = true;
@@ -22,12 +23,14 @@ const modalResult = document.querySelector(".modal-result");
 let TieOrWin= false;
 const playEndOptionsWrapper = document.querySelector(".options-after-play-end");
 const reloadOptionsWrapper = document.querySelector(".options-for-reload");
+let takeNumber = null;
 // <turn indicator variables2&4
 
 // go to play board variables>3
 const gameOptionButtons = document.querySelectorAll(".game-option-button");
 const initialSection = document.getElementById("initial-section");
 const PlaySection = document.getElementById("vs-player-section");
+let whichGameMode = null;
 // <go to play board variables3
 // reload variables>5
 const reloadButton = document.querySelector(".reload-button");
@@ -47,13 +50,21 @@ function buttonActiveHandler(optionButton, index, arr)
         {
             if(i == index)
             {
+                if(index == 0)
+                {
+                    choosenSign = true;
+                }
+                else if(index == 1)
+                {
+                    choosenSign = false;
+                }
                 optionButton.classList.add("option-button-active");
             }
             else
             {
                 arr[i].classList.remove("option-button-active");
             }
-        } 
+        }
     });
 }
 //<option buttons action1
@@ -88,9 +99,17 @@ function moveOnPages()
     PlaySection.classList.toggle("display-grid");
 }
 // go to play board handler>3
-gameOptionButtons.forEach((optionButton)=>{
+gameOptionButtons.forEach((optionButton, index)=>{
     optionButton.addEventListener('click', () =>{
+        if(index == 0)
+        {
+            whichGameMode = false;
+        }
+        else if(index == 1){
+            whichGameMode = true;
+        }
         moveOnPages();
+        gameAction();
     });
 });
 // <go to play board handler3
@@ -114,7 +133,6 @@ function winExecution(classForCheck, TieOrWin,winBlocks)
     {
         p1Score++;
         p1.innerHTML = p1Score;
-        console.log("p1 " + p1Score);
         for(let i = 0; i < winBlocks.length; i++)
         {
             winBlocks[i].classList.add("win");
@@ -131,12 +149,12 @@ function winExecution(classForCheck, TieOrWin,winBlocks)
         reloadOptionsWrapper.classList.replace("display-flex", "display-none");
         playEndOptionsWrapper.classList.remove("display-none");
         playEndOptionsWrapper.classList.add("display-flex");
+        
     }
     else if(classForCheck == "o-chosen" && TieOrWin == true)
     {
         p2Score++;
         p2.innerHTML = p2Score;
-        console.log("p2 " + p2Score);
         for(let i = 0; i < winBlocks.length; i++)
         {
             winBlocks[i].classList.add("win");
@@ -167,6 +185,11 @@ function winExecution(classForCheck, TieOrWin,winBlocks)
         reloadOptionsWrapper.classList.replace("display-flex", "display-none");
         playEndOptionsWrapper.classList.remove("display-none");
         playEndOptionsWrapper.classList.add("display-flex");
+    }
+    if(whichGameMode == false)
+    {
+        whichTurn = true;
+        turnIndicatorHandler();
     }
     setTimeout(openCloseModal, 1000);
         
@@ -209,32 +232,84 @@ function winChecker(array, classForCheck)
         tieChecker = 0;
         tieScore++;
         tie.innerHTML = tieScore;
-        console.log(tieScore);
         winExecution(classForCheck, TieOrWin, []);
         return;
     }
 }
     //<win conbinations checker
 
-blocksArray.forEach((block, index, blockArray) =>{
-    block.addEventListener('click', () => {
-        if(whichTurn == true && block.classList.contains("ready-for-x") && alreadyWon ==false)
+    //cpu playing function>
+function cpuPlaying(blockArray, initialChecker, checkerAlterer)
+{
+    setTimeout(() => {
+        if(alreadyWon == false)
         {
-            block.classList.replace("ready-for-x", "x-chosen");
+            do{
+                takeNumber = Math.floor(Math.random() * 9);
+            }while(blocksArray[takeNumber].classList.contains("x-chosen") || blocksArray[takeNumber].classList.contains("o-chosen"));
+        }
+        if(blocksArray[takeNumber].classList.contains(initialChecker) && alreadyWon == false)
+        {
+            blockArray[takeNumber].classList.replace(initialChecker, checkerAlterer);
             whichTurn = !whichTurn;
             turnIndicatorHandler();
-            winChecker(blockArray, "x-chosen");
+            winChecker(blockArray, checkerAlterer);
         }
-        else if(whichTurn == false && block.classList.contains("ready-for-o") && alreadyWon ==false)
+    }, 1000)
+}
+        //<cpu playing function
+function gameAction()
+{
+    if(choosenSign == false && whichTurn == true && alreadyWon == false && whichGameMode == false)
+    {
+        cpuPlaying(blocksArray, "ready-for-x", "x-chosen");
+    }
+    blocksArray.forEach((block, index, blockArray) =>{
+        if(choosenSign == false && alreadyWon == false && whichGameMode == false)
         {
-            block.classList.replace("ready-for-o", "o-chosen");
-            whichTurn = !whichTurn;
-            turnIndicatorHandler();
-            winChecker(blockArray, "o-chosen");
+            block.addEventListener('click', () => {
+                if(choosenSign == false && whichTurn == false && block.classList.contains("ready-for-o") && alreadyWon == false && whichGameMode == false)
+                {
+                    block.classList.replace("ready-for-o", "o-chosen");
+                    whichTurn = !whichTurn;
+                    turnIndicatorHandler();
+                    winChecker(blockArray, "o-chosen");
+                    cpuPlaying(blocksArray, "ready-for-x", "x-chosen");
+                }
+            })
         }
+        block.addEventListener('click', () => {
+            if(whichTurn == true && block.classList.contains("ready-for-x") && alreadyWon == false && whichGameMode == true)
+            {
+                block.classList.replace("ready-for-x", "x-chosen");
+                whichTurn = !whichTurn;
+                turnIndicatorHandler();
+                winChecker(blockArray, "x-chosen");
+            }
+            else if(whichTurn == false && block.classList.contains("ready-for-o") && alreadyWon == false && whichGameMode == true)
+            {
+                block.classList.replace("ready-for-o", "o-chosen");
+                whichTurn = !whichTurn;
+                turnIndicatorHandler();
+                winChecker(blockArray, "o-chosen");
+            }
+            else if(whichGameMode == false)
+            {
+                if(whichTurn == choosenSign == true && block.classList.contains("ready-for-x") && alreadyWon == false)
+                {
+                    block.classList.replace("ready-for-x", "x-chosen");
+                    whichTurn = !whichTurn;
+                    turnIndicatorHandler();
+                    winChecker(blockArray, "x-chosen");
+                    cpuPlaying(blockArray, "ready-for-o", "o-chosen");
+                }
+            }
+        });
     });
-});
+}
+
 // <blocks click event handler4
+    // reset and common reset functions>
 function resetBoard()
 {
     blocksArray.forEach((block)=>{
@@ -275,6 +350,8 @@ function commonReset()
     alreadyWon = false;
     TieOrWin = false;
 }
+    // <reset and common reset functions
+
 // reload handler>5
 reloadButton.addEventListener('click', () =>{
     if(alreadyWon == false)
@@ -300,18 +377,35 @@ reloadRejectButton.addEventListener('click', () =>{
 });
 reloadAcceptButton.addEventListener('click', ()=>{
     openCloseModal();
+    if(whichGameMode == false)
+    {
+        whichTurn = true;
+        turnIndicatorHandler();
+        if(choosenSign == false && alreadyWon == false && whichGameMode == false)
+        {
+            cpuPlaying(blocksArray, "ready-for-x", "x-chosen");
+        }
+    }
     resetBoard();
 });
-// reload handler>5
+// <reload handler5
 // play end modal handler>6
 nextRoundButton.addEventListener('click', ()=>{
     commonReset();
+    if(whichGameMode == false)
+    {
+        whichTurn = true;
+        turnIndicatorHandler();
+        if(choosenSign == false && alreadyWon == false && whichGameMode == false)
+        {
+            cpuPlaying(blocksArray, "ready-for-x", "x-chosen");
+        }
+    }
 });
 quitButton.addEventListener('click', ()=>{
     whichTurn = true;
     turnIndicatorHandler();
     commonReset();
-    console.log(whichTurn);
     p1Score = 0;
     p2Score = 0;
     tieScore = 0;

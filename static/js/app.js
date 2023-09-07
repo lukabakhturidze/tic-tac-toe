@@ -356,16 +356,21 @@ function commonReset()
 reloadButton.addEventListener('click', () =>{
     if(alreadyWon == false)
     {
-        modalXO.classList.remove("o-modal-win");
-        modalXO.classList.remove("x-modal-win");
-        modalResult.innerHTML = "RESTART GAME?";
-        modalResult.classList.add("gray-text");
-        modalWinDeclaration.classList.add("display-none");
-        modalWinDeclaration.classList.remove("display-block");
-        playEndOptionsWrapper.classList.replace("display-flex", "display-none");
-        reloadOptionsWrapper.classList.remove("display-none");
-        reloadOptionsWrapper.classList.add("display-flex");
-        openCloseModal();
+        if(whichGameMode == false && whichTurn == !choosenSign){
+            return;
+        }
+        else{
+            modalXO.classList.remove("o-modal-win");
+            modalXO.classList.remove("x-modal-win");
+            modalResult.innerHTML = "RESTART GAME?";
+            modalResult.classList.add("gray-text");
+            modalWinDeclaration.classList.add("display-none");
+            modalWinDeclaration.classList.remove("display-block");
+            playEndOptionsWrapper.classList.replace("display-flex", "display-none");
+            reloadOptionsWrapper.classList.remove("display-none");
+            reloadOptionsWrapper.classList.add("display-flex");
+            openCloseModal();
+        }
     }
     else
     {
